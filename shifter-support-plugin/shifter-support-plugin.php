@@ -24,19 +24,19 @@ function add_shifter_support() {
 
   global $wp_admin_bar;
   $shifter_support = array(
-		'id'    => 'shifter_support',
-		'title' => '<span id="shifter-support-top-menu">Shifter</span>',
-	);
+    'id'    => 'shifter_support',
+    'title' => '<span id="shifter-support-top-menu">Shifter</span>'
+  );
 
   $shifter_support_terminate = array(
     'id'    => 'shifter_support_terminate',
-		'title' => 'Terminate the app',
+    'title' => 'Terminate the app',
     'parent' => 'shifter_support'
   );
 
   $shifter_support_generate = array(
     'id'    => 'shifter_support_generate',
-		'title' => 'Generate the artifact',
+    'title' => 'Generate the artifact',
     'parent' => 'shifter_support'
   );
 
