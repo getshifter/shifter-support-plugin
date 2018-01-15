@@ -7,7 +7,7 @@ function link_to($url) {
 <h2>Theme</h2>
 <table>
   <thead>
-    <tr>
+    <tr class="shifter-diag">
       <th>name</th>
       <th>url</th>
       <th>version</th>
@@ -25,7 +25,7 @@ function link_to($url) {
 
 <h2>Activated Plugins</h2>
 <table>
-  <tr>
+  <tr class="shifter-diag">
     <th>name</th>
     <th>url</th>
     <th>version</th>

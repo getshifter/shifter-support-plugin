@@ -7,11 +7,15 @@ td.shifter-support-url {
   word-break: break-all;
 }
 
-th, td {
-    border-bottom: 1px solid #ddd;
+th.shifter-diag, td.shifter-diag {
+  border-bottom: 1px solid #ddd;
 }
 
-th {
-    background-color: #B766A3;
-    color: white;
+tr.shifter-diag {
+  background-color: #B766A3;
+  color: white;
+}
+
+td.shifter-support-version {
+  width: 7em;
 }

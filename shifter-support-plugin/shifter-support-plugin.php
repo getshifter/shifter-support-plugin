@@ -13,8 +13,16 @@ add_action('admin_enqueue_scripts', 'add_shifter_support_css');
 
 function add_shifter_support_css() {
   error_log("shifter_support");
+  // wp_register_style('shifter-support', plugins_url('css/bootstrap.css', __FILE__));
+  // wp_enqueue_style('bootstrap');
   wp_register_style('shifter-support', plugins_url('css/shifter-support.css', __FILE__));
-	wp_enqueue_style('shifter-support');
+  wp_enqueue_style('shifter-support');
+
+  // wp_enqueue_script("jquery");
+  // wp_register_script('shifter-support', plugins_url('js/bootstrap.min.js', __FILE__));
+  // wp_enqueue_script('bootstrap');
+  wp_register_script('sweetalert', plugins_url('js/sweetalert.min.js', __FILE__));
+  wp_enqueue_script('sweetalert');
 }
 
 
@@ -24,20 +32,23 @@ function add_shifter_support() {
 
   global $wp_admin_bar;
   $shifter_support = array(
-    'id'    => 'shifter_support',
-    'title' => '<span id="shifter-support-top-menu">Shifter</span>'
+    'id'=> 'shifter_support',
+    'title' => '<span id="shifter-support-top-menu">Shifter</span>',
   );
 
   $shifter_support_terminate = array(
     'id'    => 'shifter_support_terminate',
     'title' => 'Terminate the app',
-    'parent' => 'shifter_support'
+    'parent' => 'shifter_support',
+    'href' => '#',
+    'meta' => array('id'=>'shifter-support-terminate-site')
   );
 
   $shifter_support_generate = array(
     'id'    => 'shifter_support_generate',
     'title' => 'Generate the artifact',
-    'parent' => 'shifter_support'
+    'parent' => 'shifter_support',
+    'href' => '#'
   );
 
   $wp_admin_bar->add_menu( $shifter_support );
@@ -56,4 +67,9 @@ function add_shifter_diag_contents() {
   include("diag/diag.php");
 }
 
+add_action( 'admin_footer', 'add_generator_call');
+
+function add_generator_call() {
+  include ('generator/trigger.js.php');
+}
 ?>
