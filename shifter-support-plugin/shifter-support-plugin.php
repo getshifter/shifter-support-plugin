@@ -9,25 +9,20 @@ Author: Shifter Team
 Author URI: https://getshifter.io
 License: GPL2
 */
-add_action('admin_enqueue_scripts', 'add_shifter_support_css');
+require('api/shifter_api.php');
 
+
+add_action('admin_enqueue_scripts', 'add_shifter_support_css');
 function add_shifter_support_css() {
-  error_log("shifter_support");
-  // wp_register_style('shifter-support', plugins_url('css/bootstrap.css', __FILE__));
-  // wp_enqueue_style('bootstrap');
   wp_register_style('shifter-support', plugins_url('css/shifter-support.css', __FILE__));
   wp_enqueue_style('shifter-support');
 
-  // wp_enqueue_script("jquery");
-  // wp_register_script('shifter-support', plugins_url('js/bootstrap.min.js', __FILE__));
-  // wp_enqueue_script('bootstrap');
   wp_register_script('sweetalert', plugins_url('js/sweetalert.min.js', __FILE__));
   wp_enqueue_script('sweetalert');
 }
 
 
 add_action('wp_before_admin_bar_render', 'add_shifter_support');
-
 function add_shifter_support() {
 
   global $wp_admin_bar;
@@ -52,24 +47,37 @@ function add_shifter_support() {
   );
 
   $wp_admin_bar->add_menu( $shifter_support );
-  $wp_admin_bar->add_menu( $shifter_support_diag );
   $wp_admin_bar->add_menu( $shifter_support_terminate );
   $wp_admin_bar->add_menu( $shifter_support_generate );
 }
 
-add_action( 'wp_dashboard_setup', 'add_shifter_diag' );
 
+add_action( 'wp_dashboard_setup', 'add_shifter_diag' );
 function add_shifter_diag() {
   wp_add_dashboard_widget('shifter_app_diag', 'Your Shifter app environment', 'add_shifter_diag_contents');
 }
 
 function add_shifter_diag_contents() {
-  include("diag/diag.php");
+  include('diag/diag.php');
 }
 
-add_action( 'admin_footer', 'add_generator_call');
 
+add_action( 'admin_footer', 'add_generator_call');
 function add_generator_call() {
   include ('generator/trigger.js.php');
+}
+
+
+add_action("wp_ajax_shifter_app_terminate", "shifter_app_terminate");
+function shifter_app_terminate() {
+  $api = new Shifter;
+  return $api->terminate_wp_app();
+}
+
+
+add_action("wp_ajax_shifter_app_generate", "shifter_app_generate");
+function shifter_app_generate() {
+  $api = new Shifter;
+  return $api->generate_wp_app();
 }
 ?>

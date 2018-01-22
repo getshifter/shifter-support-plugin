@@ -1,10 +1,3 @@
-<?php
-  $site_id = getenv('SITE_ID');
-  $token = getenv('SHIFTER_TOKEN');
-  $terminate_url = "https://kelbes0rsk.execute-api.us-east-1.amazonaws.com/production/v2/projects/${site_id}/wordpress_site/stop";
-  $generate_url = "https://api.getshifter.io/v1/artifacts/${site_id}";
-?>
-
 <script type="text/javascript" >
   jQuery("li#wp-admin-bar-shifter_support_terminate .ab-item").on( "click", function() {
     swal({
@@ -17,8 +10,7 @@
     .then((isRunTerminate) => {
       if (isRunTerminate) {
         call_shifter_operation(
-          '<?php echo $terminate_url ?>',
-          '<?php echo $token ?>',
+          "shifter_app_terminate",
           "Shifter app is terminated. Check your dashborad!",
           "Shifter app termination was failed!"
         );
@@ -37,8 +29,7 @@
     .then((isRunTerminate) => {
       if (isRunTerminate) {
         call_shifter_operation(
-          '<?php echo $generate_url ?>',
-          '<?php echo $token ?>',
+          "shifter_app_generate",
           "Shifter app is generated. Check your dashborad!",
           "Shifter app generation was failed!"
         );
@@ -46,19 +37,15 @@
     });
   });
 
-  function call_shifter_operation(url, token, successMsg, failedMsg) {
+  function call_shifter_operation(action, successMsg, failedMsg) {
     jQuery.ajax({
-      url: url,
-      type: 'POST',
-      dataType: 'json',
-      contentType: 'application/json',
-      crossDomain: true,
-      headers: {
-        'Authorization': token
-      },
-      success: (response) => { swal(successMsg, { icon: "success" }); },
-      error: (response) => { swal(failedMsg, { icon: "Warning" }); }
-    });
+      method: 'POST',
+      url: ajaxurl,
+      data: { 'action': action }
+    }).then((response) => {
+      swal(successMsg, { icon: "success" });
+    }).fail((response) => {
+      swal(failedMsg, { icon: "warning" });
+    })
   }
-
 </script>
