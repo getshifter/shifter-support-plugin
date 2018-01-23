@@ -1,18 +1,17 @@
 <script type="text/javascript" >
   jQuery("li#wp-admin-bar-shifter_support_terminate .ab-item").on( "click", function() {
     swal({
-      title: "Are you sure?",
-      text: "If you run terminattion, The shifter app could not be accessed.",
+      title: "You are about to run 'Terminate'. Are you sure?",
+      text: "You will not be able to access this WordPress.",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     })
-    .then((isRunTerminate) => {
-      if (isRunTerminate) {
+    .then((isOK) => {
+      if (isOK) {
         call_shifter_operation(
           "shifter_app_terminate",
-          "Shifter app is terminated. Check your dashborad!",
-          "Shifter app termination was failed!"
+          "Your Shifter app is terminated. Check your dashborad!"
         );
       }
     });
@@ -20,32 +19,29 @@
 
   jQuery("li#wp-admin-bar-shifter_support_generate .ab-item").on( "click", function() {
     swal({
-      title: "Are you sure?",
-      text: "If you start generate, The shifter app could not be accessed.",
+      title: "You are about to run 'Generate'. Are you sure?",
+      text: "You will not be able to access this WordPress.",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     })
-    .then((isRunTerminate) => {
-      if (isRunTerminate) {
+    .then((isOK) => {
+      if (isOK) {
         call_shifter_operation(
           "shifter_app_generate",
-          "Shifter app is generated. Check your dashborad!",
-          "Shifter app generation was failed!"
+          "Generating artifact is starting now. Check your dashborad!"
         );
       }
     });
   });
 
-  function call_shifter_operation(action, successMsg, failedMsg) {
+  function call_shifter_operation(action, message) {
     jQuery.ajax({
       method: 'POST',
       url: ajaxurl,
       data: { 'action': action }
-    }).then((response) => {
-      swal(successMsg, { icon: "success" });
-    }).fail((response) => {
-      swal(failedMsg, { icon: "warning" });
+    }).done((response) => {
+      swal(message, { icon: "success" });
     })
   }
 </script>

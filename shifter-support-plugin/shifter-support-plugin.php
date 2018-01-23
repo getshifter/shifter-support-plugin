@@ -59,6 +59,7 @@ function add_shifter_diag() {
 
 function add_shifter_diag_contents() {
   include('diag/diag.php');
+  include('diag/diag.js.php');
 }
 
 

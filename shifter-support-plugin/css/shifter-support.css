@@ -19,3 +19,11 @@ tr.shifter-diag {
 td.shifter-support-version {
   width: 7em;
 }
+
+.shifter-support-diag-content {
+  display: none;
+}
+
+.shifter-support-diag-content:target {
+  display: block;
+}
