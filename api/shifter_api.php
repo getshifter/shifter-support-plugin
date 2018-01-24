@@ -12,15 +12,16 @@ class Shifter {
     $this->site_id = getenv("SITE_ID");
     $this->access_token = getenv('SHIFTER_ACCESS_TOKEN');
     $this->refresh_token = getenv('SHIFTER_REFRESH_TOKEN');
-    $this->terminate_url = "https://37r4p3mq51.execute-api.us-east-1.amazonaws.com/development/v2/projects/$this->site_id/wordpress_site/stop";
-    $this->generate_url = "https://wxx4qap.api.goshifter.co/v1/projects/$this->site_id/artifacts";
-    $this->refresh_url = "https://wxx4qap.api.goshifter.co/v1/login";
+    
+    $shifte_api_v1 = getenv('SHIFTER_API_URL_V1');
+    $shifte_api_v2 = getenv('SHIFTER_API_URL_V2');
+    $this->terminate_url = "$shifte_api_v2/projects/$this->site_id/wordpress_site/stop";
+    $this->generate_url = "$shifte_api_v1/projects/$this->site_id/artifacts";
+    $this->refresh_url = "$shifte_api_v1/login";
 
     $bootup_unixtimestamp = file_get_contents('../../.bootup');
     $bootup_date = new DateTime();
     self::$token_update_date = $bootup_date->setTimestamp($bootup_unixtimestamp);
-    #$terminate_url = "https://kelbes0rsk.execute-api.us-east-1.amazonaws.com/production/v2/projects/${site_id}/wordpress_site/stop";
-    #$generate_url = "https://api.getshifter.io/v1/projects/$this->site_id/artifacts";
   }
 
   public function terminate_wp_app() {
