@@ -9,10 +9,8 @@
     })
     .then((isOK) => {
       if (isOK) {
-        call_shifter_operation(
-          "shifter_app_terminate",
-          "Your Shifter app is terminated. Check your dashborad!"
-        );
+        call_shifter_operation("shifter_app_terminate");
+        swal("Your Shifter app is terminated. Check your dashborad!", { icon: "success" });
       }
     });
   });
@@ -27,21 +25,19 @@
     })
     .then((isOK) => {
       if (isOK) {
-        call_shifter_operation(
-          "shifter_app_generate",
-          "Generating artifact is starting now. Check your dashborad!"
-        );
+        call_shifter_operation("shifter_app_generate");
+        swal("Generating artifact is starting now. Check your dashborad!", { icon: "success" });
       }
     });
   });
 
-  function call_shifter_operation(action, message) {
+  function call_shifter_operation(action) {
     jQuery.ajax({
-      method: 'POST',
+      method: "POST",
       url: ajaxurl,
-      data: { 'action': action }
+      data: { "action": action }
     }).done((response) => {
-      swal(message, { icon: "success" });
-    })
+      error_log(response);
+    });
   }
 </script>
