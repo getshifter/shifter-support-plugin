@@ -10,16 +10,16 @@ class Shifter {
 
   public function __construct() {
     $this->site_id = getenv("SITE_ID");
-    $this->access_token = getenv('SHIFTER_ACCESS_TOKEN');
-    $this->refresh_token = getenv('SHIFTER_REFRESH_TOKEN');
-    
-    $shifte_api_v1 = getenv('SHIFTER_API_URL_V1');
-    $shifte_api_v2 = getenv('SHIFTER_API_URL_V2');
+    $this->access_token = getenv("SHIFTER_ACCESS_TOKEN");
+    $this->refresh_token = getenv("SHIFTER_REFRESH_TOKEN");
+
+    $shifte_api_v1 = getenv("SHIFTER_API_URL_V1");
+    $shifte_api_v2 = getenv("SHIFTER_API_URL_V2");
     $this->terminate_url = "$shifte_api_v2/projects/$this->site_id/wordpress_site/stop";
     $this->generate_url = "$shifte_api_v1/projects/$this->site_id/artifacts";
     $this->refresh_url = "$shifte_api_v1/login";
 
-    $bootup_unixtimestamp = file_get_contents('../../.bootup');
+    $bootup_unixtimestamp = file_get_contents(ABSPATH."/.bootup");
     $bootup_date = new DateTime();
     self::$token_update_date = $bootup_date->setTimestamp($bootup_unixtimestamp);
   }
@@ -40,18 +40,18 @@ class Shifter {
 
   private function build_args() {
     $headers = array(
-      'authorization' => $this->access_token,
-      'content-Type' => 'application/json'
+      "authorization" => $this->access_token,
+      "content-Type" => "application/json"
     );
-    return array('method' => 'POST', 'headers' => $headers, 'blocking' => false);
+    return array("method" => "POST", "headers" => $headers, "blocking" => false);
   }
 
   private function refresh_token() {
-    $headers = array('content-type' => 'application/json');
+    $headers = array("content-type" => "application/json");
     $args = array(
-      'method' => 'PUT',
-      'headers' => $headers,
-      'body' => json_encode(array('refreshToken' => $this->refresh_token))
+      "method" => "PUT",
+      "headers" => $headers,
+      "body" => json_encode(array("refreshToken" => $this->refresh_token))
     );
     $response = wp_remote_request($this->refresh_url, $args);
     $body = $response[body];
