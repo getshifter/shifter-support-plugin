@@ -27,3 +27,7 @@ td.shifter-support-version {
 .shifter-support-diag-content:target {
   display: block;
 }
+
+.disable_shifter_operation {
+  color: lightgray;
+}
