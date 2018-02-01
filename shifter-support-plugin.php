@@ -9,18 +9,21 @@ Author: Shifter Team
 Author URI: https://getshifter.io
 License: GPL2
 */
+
 require("api/shifter_api.php");
 
+define('SHIFTER_ASSET_DIR', content_url('/mu-plugins/') . basename(__DIR__) . '/assets/');
+define('SHIFTER_CSS', SHIFTER_ASSET_DIR . 'css/shifter-support.css');
+define('SWAL_JS', SHIFTER_ASSET_DIR . 'js/sweetalert.min.js');
 
 add_action("admin_enqueue_scripts", "add_shifter_support_css");
 function add_shifter_support_css() {
-  wp_register_style("shifter-support", plugins_url("css/shifter-support.css", __FILE__));
+  wp_register_style("shifter-support", SHIFTER_CSS);
   wp_enqueue_style("shifter-support");
 
-  wp_register_script("sweetalert", plugins_url("js/sweetalert.min.js", __FILE__));
+  wp_register_script("sweetalert", SWAL_JS);
   wp_enqueue_script("sweetalert");
 }
-
 
 add_action("wp_before_admin_bar_render", "add_shifter_support");
 function add_shifter_support() {
