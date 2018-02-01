@@ -10,8 +10,8 @@
     .then((isOK) => {
       if (isOK) {
         call_shifter_operation("shifter_app_terminate");
-        swal("Your Shifter app is terminated. Check your dashborad!", { icon: "success" });
-        window.close();
+        swal("Your Shifter app is terminated. Check your dashborad!", {icon: "success"})
+        .then(() => window.close());
       }
     });
   });
@@ -27,8 +27,8 @@
     .then((isOK) => {
       if (isOK) {
         call_shifter_operation("shifter_app_generate");
-        swal("Generating artifact is starting now. Check your dashborad!", { icon: "success" });
-        window.close();
+        swal("Generating artifact is starting now. Check your dashborad!", {icon: "success"})
+        .then(() => window.close());
       }
     });
   });
