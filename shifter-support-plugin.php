@@ -24,8 +24,9 @@ function add_shifter_support_css() {
 
 add_action("wp_before_admin_bar_render", "add_shifter_support");
 function add_shifter_support() {
-
+  $local_class = getenv("SHIFTER_LOCAL") ? "disable_shifter_operation" : "";
   global $wp_admin_bar;
+
   $shifter_support = array(
     "id" => "shifter_support",
     "title" => '<span id="shifter-support-top-menu">Shifter</span>',
@@ -36,14 +37,15 @@ function add_shifter_support() {
     "title" => "Terminate the app",
     "parent" => "shifter_support",
     "href" => "#",
-    "meta" => array("id" => "shifter-support-terminate-site")
+    "meta" => array("class" => $local_class)
   );
 
   $shifter_support_generate = array(
     "id"    => "shifter_support_generate",
     "title" => "Generate the artifact",
     "parent" => "shifter_support",
-    "href" => "#"
+    "href" => "#",
+    "meta" => array("class" => $local_class)
   );
 
   $wp_admin_bar->add_menu($shifter_support);
@@ -65,7 +67,10 @@ function add_shifter_diag_contents() {
 
 add_action("admin_footer", "add_generator_call");
 function add_generator_call() {
-  include ("generator/trigger.js.php");
+  $is_local = getenv("SHIFTER_LOCAL");
+  if(!$is_local) {
+    include ("generator/trigger.js.php");
+  }
 }
 
 
