@@ -11,15 +11,19 @@ License: GPL2
 */
 require("api/shifter_api.php");
 
-
 add_action("admin_enqueue_scripts", "add_shifter_support_css");
 function add_shifter_support_css() {
-  wp_register_style("shifter-support", plugins_url("css/shifter-support.css", __FILE__));
+  wp_register_style("shifter-support", plugins_url('/css/shifter-support.css', __FILE__));
   wp_enqueue_style("shifter-support");
 
   wp_register_script("sweetalert", plugins_url("js/sweetalert.min.js", __FILE__));
   wp_enqueue_script("sweetalert");
 }
+
+// echo '<pre>' . print_r(plugins_url('/css/shifter-support.css', __FILE__)) . '</pre>';
+
+echo '<pre>' . print_r(basename(__DIR__)) . '</pre>';
+
 
 
 add_action("wp_before_admin_bar_render", "add_shifter_support");
@@ -34,7 +38,7 @@ function add_shifter_support() {
 
   $shifter_support_terminate = array(
     "id"    => "shifter_support_terminate",
-    "title" => "Terminate the app",
+    "title" => "Terminate app",
     "parent" => "shifter_support",
     "href" => "#",
     "meta" => array("class" => $local_class)
@@ -42,7 +46,7 @@ function add_shifter_support() {
 
   $shifter_support_generate = array(
     "id"    => "shifter_support_generate",
-    "title" => "Generate the artifact",
+    "title" => "Generate artifact",
     "parent" => "shifter_support",
     "href" => "#",
     "meta" => array("class" => $local_class)
@@ -56,7 +60,7 @@ function add_shifter_support() {
 
 add_action("wp_dashboard_setup", "add_shifter_diag");
 function add_shifter_diag() {
-  wp_add_dashboard_widget("shifter_app_diag", "Your Shifter app environment", "add_shifter_diag_contents");
+  wp_add_dashboard_widget("shifter_app_diag", "Shifter", "add_shifter_diag_contents");
 }
 
 function add_shifter_diag_contents() {
