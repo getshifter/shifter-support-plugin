@@ -1,4 +1,6 @@
 <?php
+$site_id = getenv("SITE_ID");
+
 function link_to($url) {
   echo '<a href="' . $url . '">' . $url . '</a>';
 }
@@ -10,6 +12,7 @@ function link_to($url) {
 
 <div id="shifter-support-diag" class="shifter-support-diag">
   <div id="shifter-support-diag-styled-target">
+    <h2>Project ID: <?php echo $site_id ?></h2>
     <h2>Theme</h2>
     <table>
       <thead>
@@ -43,15 +46,16 @@ function link_to($url) {
         <?php foreach($plugins as $plugin) { ?>
           <tr>
             <?php $plugin_meta = get_plugin_data(WP_PLUGIN_DIR . "/" . $plugin); ?>
-            <td class="shifter-support-name"><?php echo $plugin_meta[Name]; ?></td>
-            <td class="shifter-support-url"><?php echo link_to($plugin_meta[PluginURI]); ?></td>
-            <td class="shifter-support-version"><?php echo $plugin_meta[Version]; ?></td>
+            <td class="shifter-support-name"><?php echo $plugin_meta['Name']; ?></td>
+            <td class="shifter-support-url"><?php echo link_to($plugin_meta['PluginURI']); ?></td>
+            <td class="shifter-support-version"><?php echo $plugin_meta['Version']; ?></td>
           </tr>
         <?php } ?>
       </tbody>
     </table>
   </div>
   <div id="shifter-support-diag-text-target">
+    <p>Project ID: <?php echo $site_id ?></p>
     <p>Theme</p>
     <p>
       name: <?php echo $theme->get("Name"); ?>,
@@ -63,9 +67,9 @@ function link_to($url) {
       <?php $plugins = get_option("active_plugins"); ?>
       <?php foreach($plugins as $plugin) { ?>
         <?php $plugin_meta = get_plugin_data(WP_PLUGIN_DIR . "/" . $plugin); ?>
-        name: <?php echo $plugin_meta[Name]; ?>,
-        URI: <?php echo link_to($plugin_meta[PluginURI]); ?>,
-        Version: <?php echo $plugin_meta[Version]; ?><br />
+        name: <?php echo $plugin_meta['Name']; ?>,
+        URI: <?php echo link_to($plugin_meta['PluginURI']); ?>,
+        Version: <?php echo $plugin_meta['Version']; ?><br />
       <?php } ?>
       <br />
       <br />
