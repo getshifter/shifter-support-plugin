@@ -1,4 +1,6 @@
 <?php
+$site_id = getenv("SITE_ID");
+
 function link_to($url) {
   echo '<a href="' . $url . '">' . $url . '</a>';
 }
@@ -10,6 +12,7 @@ function link_to($url) {
 
 <div id="shifter-support-diag" class="shifter-support-diag">
   <div id="shifter-support-diag-styled-target">
+    <h2>Project ID: <?php echo $site_id ?></h2>
     <h2>Theme</h2>
     <table>
       <thead>
@@ -52,6 +55,7 @@ function link_to($url) {
     </table>
   </div>
   <div id="shifter-support-diag-text-target">
+    <p>Project ID: <?php echo $site_id ?></p>
     <p>Theme</p>
     <p>
       name: <?php echo $theme->get("Name"); ?>,
