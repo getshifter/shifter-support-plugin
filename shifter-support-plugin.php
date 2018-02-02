@@ -37,7 +37,7 @@ function add_shifter_support() {
 
   $shifter_support_terminate = array(
     "id"    => "shifter_support_terminate",
-    "title" => "Terminate the app",
+    "title" => "Terminate app",
     "parent" => "shifter_support",
     "href" => "#",
     "meta" => array("class" => $local_class)
@@ -45,7 +45,7 @@ function add_shifter_support() {
 
   $shifter_support_generate = array(
     "id"    => "shifter_support_generate",
-    "title" => "Generate the artifact",
+    "title" => "Generate artifact",
     "parent" => "shifter_support",
     "href" => "#",
     "meta" => array("class" => $local_class)
@@ -59,7 +59,7 @@ function add_shifter_support() {
 
 add_action("wp_dashboard_setup", "add_shifter_diag");
 function add_shifter_diag() {
-  wp_add_dashboard_widget("shifter_app_diag", "Your Shifter app environment", "add_shifter_diag_contents");
+  wp_add_dashboard_widget("shifter_app_diag", "Shifter", "add_shifter_diag_contents");
 }
 
 function add_shifter_diag_contents() {
