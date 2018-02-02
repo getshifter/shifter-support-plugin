@@ -20,12 +20,6 @@ function add_shifter_support_css() {
   wp_enqueue_script("sweetalert");
 }
 
-// echo '<pre>' . print_r(plugins_url('/css/shifter-support.css', __FILE__)) . '</pre>';
-
-echo '<pre>' . print_r(basename(__DIR__)) . '</pre>';
-
-
-
 add_action("wp_before_admin_bar_render", "add_shifter_support");
 function add_shifter_support() {
   $local_class = getenv("SHIFTER_LOCAL") ? "disable_shifter_operation" : "";
