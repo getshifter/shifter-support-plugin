@@ -1,21 +1,6 @@
 // MAIN.SCSS
 // ---------
 
-// VENDOR STYLES
-// =============================================================================
-
-@charset 'UTF-8';
-// @import '../partials/utilities/reset';                            // Eric Meyer Reset
-// @import '../../../node_modules/partsandlabor/partsandlabor.scss'; // Parts and Labor
-//
-// // THEME STYLES
-// // =============================================================================
-//
-// @import '../partials/utilities/base';    // Utilities
-// @import '../partials/global/base';       // Globals Base
-// @import '../partials/components/base';   // Components Base
-// @import '../partials/layouts/base';      // Layouts Base
-
 #shifter-support-top-menu:before {
   vertical-align: middle;
   content: url("./../../dist/images/shifter-icon.png");

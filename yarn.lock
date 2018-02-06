@@ -1447,6 +1447,10 @@ cli-width@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
 
+clipboard-copy@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/clipboard-copy/-/clipboard-copy-1.4.1.tgz#f59f47e0295e5e7e474361c5f87f5fd6023c5001"
+
 cliui@^3.0.3, cliui@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/cliui/-/cliui-3.2.0.tgz#120601537a916d29940f934da3b48d585a39213d"
@@ -5585,10 +5589,6 @@ parseuri@0.0.5:
 parseurl@~1.3.1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.2.tgz#fc289d4ed8993119460c156253262cdc8de65bf3"
-
-partsandlabor@1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/partsandlabor/-/partsandlabor-1.5.2.tgz#b5b3059079b0e077e868cae9b891953009827726"
 
 pascalcase@^0.1.1:
   version "0.1.1"
