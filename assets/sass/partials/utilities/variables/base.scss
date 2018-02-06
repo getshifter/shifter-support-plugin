@@ -1,0 +1,10 @@
+// Base: Variables
+// ---------------
+
+@import 'var-fonts';             // Fonts and Typography
+@import 'var-colors';            // Colors
+@import 'var-scaffolding';       // Grid, Layout Structures
+
+// Custom Sytles
+@import 'var-elements';          // Visual style variables for elements
+@import 'var-utilities';         // Vars related to utility mixins or @extends
