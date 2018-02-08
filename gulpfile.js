@@ -1,12 +1,4 @@
 /**
- * CONFIGURE LOCALHOST URL
- * If no localhost url is required, or to just
- * run on localhost, set to false
- *
- */
-const devUrl = '120.0.0.1:8443';
-
-/**
  * CONFIGURE AUTOPREFIXER SUPPORT
  *
  */
@@ -68,8 +60,14 @@ const fs           = require('fs');
 // Browsersync
 const browsersync  = require('browser-sync');
 
+/**
+ * CONFIGURE LOCALHOST URL
+ * If no localhost url is required, or to just
+ * run on localhost, set to false
+ *
+ */
 
-
+ let devUrl = argv.devUrl ? argv.devUrl : '127.0.0.1:8443';
 
 /**
  * PRODUCTION FLAG
