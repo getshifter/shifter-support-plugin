@@ -1,9 +1,10 @@
 {
   "name": "shifter-support-plugin",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
+    "release": "release-it",
     "postinstall": "./node_modules/gulp/bin/gulp.js",
     "build": "./node_modules/gulp/bin/gulp.js",
     "build:production": "./node_modules/gulp/bin/gulp.js --production",
@@ -61,6 +62,7 @@
   "dependencies": {
     "clipboard-copy": "^1.4.1",
     "jquery": "^3.1.1",
+    "release-it": "^7.0.0",
     "sweetalert2": "^7.11.0"
   },
   "browserify": {

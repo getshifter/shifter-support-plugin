@@ -1,0 +1,31 @@
+{
+  "requireCleanWorkingDir": false,
+  "buildCommand": "tar -czvf foo-${src.tagName}.tar.gz ",
+  "src": {
+    "tagName": "v%s"
+  },
+  "github": {
+    "release": true
+  },
+  "dist": {
+    "repo": false,
+    "stageDir": ".stage",
+    "baseDir": "release",
+    "files": ["**/*"],
+    "pkgFiles": true,
+    "commit": true,
+    "commitMessage": "Release %s",
+    "tag": true,
+    "tagName": "%s",
+    "tagAnnotation": "Release %s",
+    "push": true,
+    "beforeStageCommand": false,
+    "afterReleaseCommand": false,
+    "github": {
+      "release": false
+    },
+    "npm": {
+      "publish": false
+    }
+  }
+}
