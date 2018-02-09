@@ -1,4 +1,5 @@
 {
+  "buildCommand": "npm run build --production",
   "requireCleanWorkingDir": false,
   "src": {
     "tagName": "%s"
