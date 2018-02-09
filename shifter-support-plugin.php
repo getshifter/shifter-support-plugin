@@ -21,13 +21,33 @@ require("api/shifter_api.php");
 
 
 /*
- * Assets
- * Dirs and Vars
+ * Env + Asset Paths
+ * If ./src path does not exist
+ * build path ./dist will be used
  */
 
-define('SHIFTER_ASSET_DIR', content_url('/mu-plugins/') . basename(__DIR__) . '/src/');
-define('SHIFTER_JS', SHIFTER_ASSET_DIR . 'js/app.js');
-define('SHIFTER_CSS', SHIFTER_ASSET_DIR . 'css/main.css');
+$asset_dir = '/src/';
+$shifter_js = 'js/app.js';
+$shifter_css = 'css/main.css';
+$asset_src_path = dirname(__FILE__) . $asset_dir;
+$shifter_asset_path = content_url('/mu-plugins/') . basename(__DIR__) . $asset_dir;
+
+if (!realpath($asset_src_path)) {
+  $asset_dir = '/dist/';
+  $asset_src_path = dirname(__FILE__) . $asset_dir;
+  $shifter_asset_path = content_url('/mu-plugins/') . basename(__DIR__) . $asset_dir;
+  $shifter_js = 'js/app.min.js';
+
+  // Asset Manifest
+  $json = file_get_contents( $asset_src_path . '_rev-manifest.json' );
+  $manifest = json_decode( $json, true );
+
+  // CSS Rev Filename
+  $shifter_css = $manifest['css/main.min.css'];
+}
+
+define('SHIFTER_JS', $shifter_asset_path . $shifter_js);
+define('SHIFTER_CSS', $shifter_asset_path . $shifter_css);
 
 
 
