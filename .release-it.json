@@ -1,6 +1,5 @@
 {
   "requireCleanWorkingDir": false,
-  "buildCommand": "tar -czvf foo-${src.tagName}.tar.gz ",
   "src": {
     "tagName": "v%s"
   },
