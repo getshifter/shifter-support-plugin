@@ -41,16 +41,11 @@ export function generate_artifact() {
     .then((isOK) => {
       if (isOK) {
         call_shifter_operation("shifter_app_generate");
-        swal({
-          title: 'Generating artifact is starting now. Check your dashboard!',
-          type: "success"
-        })
         swal(
           'Generating artifact!',
           'Please check the Shifter dashboard',
           'success'
-        )
-        .then(() => window.close());
+        ).then(() => window.close());
       }
     });
   });
