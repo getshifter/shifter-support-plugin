@@ -35,7 +35,6 @@ $shifter_asset_path = content_url('/mu-plugins/') . basename(__DIR__) . $asset_d
 if (!realpath($asset_src_path)) {
   $asset_dir = '/dist/';
   $asset_src_path = dirname(__FILE__) . $asset_dir;
-  $shifter_asset_path = content_url('/mu-plugins/') . basename(__DIR__) . $asset_dir;
   $shifter_js = 'js/app.min.js';
 
   // Asset Manifest
