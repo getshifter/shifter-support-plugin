@@ -3,24 +3,6 @@ const swal = require('sweetalert2');
 
 export function terminate_app() {
   jQuery(document).on("click", "#wp-admin-bar-shifter_support_terminate", function() {
-    // swal({
-    //   title: 'Are you sure?',
-    //   text: "You won't be able to revert this!",
-    //   type: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Yes, delete it!'
-    // }).then((result) => {
-    //   if (result.value) {
-    //     swal(
-    //       'Deleted!',
-    //       'Your file has been deleted.',
-    //       'success'
-    //     );
-    //   }
-    // });
-
     swal({
       title: 'Are you sure?',
       text: "Confirm to power down your Shifter app.",
