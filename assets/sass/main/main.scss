@@ -1,6 +1,21 @@
+// MAIN.SCSS
+// ---------
+
+// BRAND COLORS
+// =============================================================================
+
+$brand-color: #bc4e9c;
+
+$purple: $brand-color;
+$magenta: #f80759;
+
+
+// ADMIN NAV
+// =============================================================================
+
 #shifter-support-top-menu:before {
   vertical-align: middle;
-  content: url("../icon/shifter-icon.png");
+  content: url("./../../dist/images/shifter-icon.png");
 }
 
 td.shifter-support-url {
@@ -12,7 +27,7 @@ th.shifter-diag, td.shifter-diag {
 }
 
 tr.shifter-diag {
-  background-color: #B766A3;
+  background-color: $purple;
   color: white;
 }
 
