@@ -1,7 +1,7 @@
 {
   "requireCleanWorkingDir": false,
   "src": {
-    "tagName": "v%s"
+    "tagName": "%s"
   },
   "github": {
     "release": true
@@ -10,18 +10,9 @@
     "repo": false,
     "stageDir": ".stage",
     "baseDir": "release",
-    "files": ["**/*"],
     "pkgFiles": true,
-    "commit": true,
-    "commitMessage": "Release %s",
-    "tag": true,
-    "tagName": "%s",
-    "tagAnnotation": "Release %s",
-    "push": true,
-    "beforeStageCommand": false,
-    "afterReleaseCommand": false,
     "github": {
-      "release": false
+      "release": true
     },
     "npm": {
       "publish": false
