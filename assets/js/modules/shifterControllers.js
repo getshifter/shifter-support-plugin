@@ -12,8 +12,8 @@ export function terminate_app() {
       cancelButtonColor: '#333',
       confirmButtonText: 'Terminate'
     })
-    .then((isOK) => {
-      if (isOK) {
+    .then((result) => {
+      if (result.value) {
         call_shifter_operation("shifter_app_terminate");
         swal(
           'App Terminated',
@@ -38,8 +38,8 @@ export function generate_artifact() {
       cancelButtonColor: '#333',
       confirmButtonText: 'Generate'
     })
-    .then((isOK) => {
-      if (isOK) {
+    .then((result) => {
+      if (result.value) {
         call_shifter_operation("shifter_app_generate");
         swal(
           'Generating artifact!',

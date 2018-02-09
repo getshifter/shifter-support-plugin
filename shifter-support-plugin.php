@@ -30,8 +30,13 @@ $asset_dir = '/src/';
 $shifter_js = 'js/app.js';
 $shifter_css = 'css/main.css';
 $asset_src_path = dirname(__FILE__) . $asset_dir;
-$shifter_asset_path = content_url('/mu-plugins/') . basename(__DIR__) . $asset_dir;
+$plugin_dir = content_url('/mu-plugins/');
 
+$shifter_asset_path = $plugin_dir . basename(__DIR__) . $asset_dir;
+
+
+
+// Production Assets
 if (!realpath($asset_src_path)) {
   $asset_dir = '/dist/';
   $asset_src_path = dirname(__FILE__) . $asset_dir;
