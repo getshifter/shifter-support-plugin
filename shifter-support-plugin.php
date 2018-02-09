@@ -10,26 +10,59 @@ Author URI: https://getshifter.io
 License: GPL2
 */
 
+
+
+/*
+ * Shifter API
+ */
+
 require("api/shifter_api.php");
 
-// define('SHIFTER_ASSET_DIR', content_url('/mu-plugins/') . basename(__DIR__) . '/assets/');
-// define('SHIFTER_CSS', SHIFTER_ASSET_DIR . 'css/shifter-support.css');
-// define('SWAL_JS', SHIFTER_ASSET_DIR . 'js/sweetalert.min.js');
 
-// Assets-New
+
+/*
+ * Assets
+ * Dirs and Vars
+ */
+
 define('SHIFTER_ASSET_DIR', content_url('/mu-plugins/') . basename(__DIR__) . '/src/');
 define('SHIFTER_JS', SHIFTER_ASSET_DIR . 'js/app.js');
 define('SHIFTER_CSS', SHIFTER_ASSET_DIR . 'css/main.css');
 
-add_action("admin_enqueue_scripts", "add_shifter_support_css");
+
+
+/*
+ * CSS Styles
+ * Admin and Front-End
+ */
+
 function add_shifter_support_css() {
   wp_register_style("shifter-support", SHIFTER_CSS);
   wp_enqueue_style("shifter-support");
+}
 
-  // Assets-New
+add_action('wp_enqueue_scripts', 'add_shifter_support_css' );
+add_action('admin_enqueue_scripts', 'add_shifter_support_css' );
+
+
+/*
+ * JS Scripts
+ * Admin and Front-End
+ * Load after enqueue jQuery
+ */
+
+function add_shifter_support_js() {
   wp_register_script("shifter-js", SHIFTER_JS, array( 'jquery' ));
   wp_enqueue_script("shifter-js");
 }
+
+add_action('wp_enqueue_scripts', 'add_shifter_support_js' );
+add_action('admin_enqueue_scripts', 'add_shifter_support_js' );
+
+/*
+ * Admin Menu
+ *
+ */
 
 add_action("wp_before_admin_bar_render", "add_shifter_support");
 function add_shifter_support() {
@@ -62,6 +95,10 @@ function add_shifter_support() {
   $wp_admin_bar->add_menu($shifter_support_generate);
 }
 
+/*
+ * Admin Dashboard Widget
+ *
+ */
 
 add_action("wp_dashboard_setup", "add_shifter_diag");
 function add_shifter_diag() {
