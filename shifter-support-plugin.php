@@ -53,11 +53,14 @@ add_action('admin_enqueue_scripts', 'add_shifter_support_css' );
 
 function add_shifter_support_js() {
   wp_register_script("shifter-js", SHIFTER_JS, array( 'jquery' ));
+  wp_localize_script( 'shifter-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
   wp_enqueue_script("shifter-js");
 }
 
 add_action('wp_enqueue_scripts', 'add_shifter_support_js' );
 add_action('admin_enqueue_scripts', 'add_shifter_support_js' );
+
+
 
 /*
  * Admin Menu
@@ -131,4 +134,3 @@ function shifter_app_generate() {
   $api = new Shifter;
   return $api->generate_wp_app();
 }
-?>
