@@ -15,8 +15,11 @@ export function terminate_app() {
     .then((isOK) => {
       if (isOK) {
         call_shifter_operation("shifter_app_terminate");
-        swal("Your Shifter app is terminated. Check your dashboard!", {icon: "success"})
-        .then(() => window.close());
+        swal(
+          'App Terminated',
+          'Check Shifter Dashboard for status or to resetart.',
+          'success'
+        ).then(() => window.close());
       }
     });
   });
@@ -38,7 +41,15 @@ export function generate_artifact() {
     .then((isOK) => {
       if (isOK) {
         call_shifter_operation("shifter_app_generate");
-        swal("Generating artifact is starting now. Check your dashboard!", {icon: "success"})
+        swal({
+          title: 'Generating artifact is starting now. Check your dashboard!',
+          type: "success"
+        })
+        swal(
+          'Generating artifact!',
+          'Please check the Shifter dashboard',
+          'success'
+        )
         .then(() => window.close());
       }
     });

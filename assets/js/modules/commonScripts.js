@@ -9,13 +9,12 @@
  * `finalize()` function of `common` in app.js.
  *
  */
-
-import { shifter_dashboard_widget } from './adminDashboard';
-import { terminate_app, generate_artifact } from './shifterControllers';
+const shifter_dashboard_widget = require('./adminDashboard');
+const { terminate_app, generate_artifact } = require('./shifterControllers');
 
 // This function will fire on init() in app.js
 export function commonInit() {
-  shifter_dashboard_widget();
+  shifter_dashboard_widget;
   terminate_app();
   generate_artifact();
 }
