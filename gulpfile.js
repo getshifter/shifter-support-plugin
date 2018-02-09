@@ -378,8 +378,7 @@ gulp.task('watch_reload', function(){ browsersync.reload(); });
 gulp.task('serve', ['build_css', 'watch_bundles'], function(){
 
   let opts = {
-    proxy: devUrl,
-    open: false
+    proxy: devUrl
   };
 
   browsersync(opts);
