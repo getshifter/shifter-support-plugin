@@ -32,8 +32,20 @@ Override default proxy with the `--devUrl` flag.
 yarn run start --devUrl https://example.dev
 ```
 
-## Build Release
+## Releasing new versions
+
+### Create Build
+
+Runs build scripts, removes src scripts for testing release candidate.
 
 ```
 yarn (or npm) run build --production
+```
+
+### Create Release
+
+Creates release candidate, versions, tags, and publishes to Github.
+
+```
+yarn (or npm) release
 ```
