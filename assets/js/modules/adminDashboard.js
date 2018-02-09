@@ -1,5 +1,3 @@
-const copy = require('clipboard-copy');
-
 export function shifter_dashboard_widget() {
   jQuery(document).ready(
     function($) {
@@ -15,12 +13,12 @@ export function shifter_dashboard_widget() {
   );
 };
 
-export function shifter_copy_diag() {
-  jQuery(document).ready(
-    function($) {
-      $("#shifter-support-diag-change-view").on("click", function(e) {
-        copy("shifter diag info..");
-      });
-    }
-  );
-}
+// export function shifter_copy_diag() {
+//   jQuery(document).ready(
+//     function($) {
+//       $("#shifter-support-diag-change-view").on("click", function(e) {
+//         copy("shifter diag info..");
+//       });
+//     }
+//   );
+// }
