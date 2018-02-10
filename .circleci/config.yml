@@ -16,6 +16,6 @@ jobs:
       - run:
           name: IS_DIST_NEWEST
           command: git diff --check --exit-code || { echo "Diff detected! please check dist was synced."; git status ; exit 1; }
-      # - run:
-      #     name: VERSION_CHECK
-      #     command: if ! [ `cat package.json | jq -r  .version` == `cat shifter-support-plugin.php | grep Version | cut -f 2 -d ' '` ] ; then exit 1 ; fi
+      - run:
+          name: VERSION_CHECK
+          command: if ! [ `cat package.json | jq -r  .version` == `cat shifter-support-plugin.php | grep Version | cut -f 2 -d ' '` ] ; then exit 1 ; fi
