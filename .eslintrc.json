@@ -11,7 +11,7 @@
     }
   },
   "rules": {
-    "semi": 2
+    "semi": ["off"]
   },
   "globals": {
     "jQuery": true,
