@@ -4,7 +4,7 @@
 Plugin Name: Shifter Support Plugin
 Plugin URI: https://github.com/getshifter/shifter-support-plugin
 Description: This plugin is provided access to Shifter support.
-Version: 1.0.8
+Version: 1.1.0
 Author: Shifter Team
 Author URI: https://getshifter.io
 License: GPL2
