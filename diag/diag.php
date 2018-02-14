@@ -7,7 +7,7 @@ function link_to($url) {
 ?>
 
 <nav>
-  <a href="#shifter-support-diag" id="shifter-support-diag-change-view">Change View</a>
+  <a href="#" id="shifter-support-diag-copy" class="button">Copy System Report</a>
 </nav>
 
 <div id="shifter-support-diag" class="shifter-support-diag">

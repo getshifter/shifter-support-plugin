@@ -35,8 +35,6 @@ function shifter_support_env() {
   }
 }
 
-echo '<pre>' . print_r(shifter_support_env()) . '</pre>';
-
 /*
  * CSS Styles
  * Admin and Front-End
