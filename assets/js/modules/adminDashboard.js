@@ -1,4 +1,5 @@
 const copy = require('clipboard-copy');
+const swal = require('sweetalert2');
 
 export function shifter_dashboard_widget() {
   jQuery(document).ready(
@@ -8,8 +9,13 @@ export function shifter_dashboard_widget() {
 
       $("#shifter-support-diag-copy").on("click", function(e) {
         e.preventDefault();
-        copy($('#shifter_app_diag').find('#shifter-support-diag').text());
-        alert('Copied to Clipboard!')
+        copy($('#shifter-debug-meta').text());
+        swal({
+          title: 'Copied to Clipboard',
+          text: 'Share this with the Shifter Support Team',
+          type: 'success',
+          confirmButtonColor: '#bc4e9c',
+        })
       });
     }
   );

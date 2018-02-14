@@ -10,6 +10,23 @@ function link_to($url) {
   <a href="#" id="shifter-support-diag-copy" class="button">Copy System Report</a>
 </nav>
 
+<div style="display: none;" id="shifter-debug-meta">
+
+<?php
+
+// System Report Vars
+$theme = (array) wp_get_theme();
+$plugins = (array) get_option("active_plugins");
+
+$system_report = array_merge($theme, $plugins);
+
+echo '<pre>';
+print_r($system_report);
+echo '</pre>';
+
+?>
+</div>
+
 <div id="shifter-support-diag" class="shifter-support-diag">
   <div id="shifter-support-diag-styled-target">
     <h2>Project ID: <?php echo $site_id ?></h2>
@@ -24,7 +41,6 @@ function link_to($url) {
       </thead>
       <tbody>
         <tr>
-          <?php $theme = wp_get_theme() ?>
           <td class="shifter-support-name"><?php echo $theme->get("Name"); ?></td>
           <td class="shifter-support-url"><?php echo link_to($theme->get("ThemeURI")); ?></td>
           <td class="shifter-support-version"><?php echo $theme->get("Version"); ?></td>
@@ -42,7 +58,6 @@ function link_to($url) {
         </tr>
       </thead>
       <tbody>
-        <?php $plugins = get_option("active_plugins"); ?>
         <?php foreach($plugins as $plugin) { ?>
           <tr>
             <?php $plugin_meta = get_plugin_data(WP_PLUGIN_DIR . "/" . $plugin); ?>
