@@ -1,13 +1,52 @@
+const copy = require('clipboard-copy');
+const swal = require('sweetalert2');
+
 export function shifter_dashboard_widget() {
   jQuery(document).ready(
     function($) {
-      $("#shifter-support-diag-styled").show();
-      $("#shifter-support-diag-text-target").hide();
 
-      $("#shifter-support-diag-change-view").on("click", function(e) {
+      $("#shifter-support-diag-copy").on("click", function(e) {
+
         e.preventDefault();
-        $("#shifter-support-diag-styled-target").toggle();
-        $("#shifter-support-diag-text-target").toggle();
+
+        let webhook = 'https://hooks.slack.com/services/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';
+        let system_report = $('#shifter-debug-meta').text();
+
+        swal({
+          title: 'Shifter System Report',
+          text: 'Send report to Shifter or copy to your clipboard',
+          type: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#bc4e9c',
+          cancelButtonColor: '#333',
+          confirmButtonText: 'Send to Shifter',
+          cancelButtonText: 'Copy to Clipboard',
+        }).then((result) => {
+          if (result.value) {
+            $.ajax({
+              type: 'POST',
+              url: webhook,
+              data: 'payload=' + JSON.stringify({
+                  "text": system_report
+              }),
+              processData: false,
+              dataType: 'json'
+            })
+            swal(
+              'Sent!',
+              'Your system report was sent',
+              'success'
+            )
+          } else if (result.dismiss === swal.DismissReason.cancel) {
+            copy($('#shifter-debug-meta').text());
+            swal(
+              'Copied to Clipboard!',
+              "Share this report in the <a href='https://support.getshifte.io'>support chat</a> or by email at <a href='mailto:support@getshifter.io'>support@getshifter.io</a>",
+              'success'
+            )
+          }
+        })
+
       });
     }
   );
