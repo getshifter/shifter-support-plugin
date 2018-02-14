@@ -24,8 +24,10 @@ function link_to($url) {
 
 <div id="shifter-support-diag" class="shifter-support-diag">
   <div id="shifter-support-diag-styled-target">
-    <h2>Project ID</h2>
-    <pre><code><?php echo $site_id ?></code></pre>
+    <?php if ($site_id) { ?>
+      <h2>Project ID</h2>
+      <pre><code><?php echo $site_id ?></code></pre>
+    <?php } ?>
     <h2>Theme</h2>
     <table>
       <thead>
