@@ -9,6 +9,10 @@ export function shifter_dashboard_widget() {
 
         e.preventDefault();
 
+        function CreateIntercomReport() {
+          Intercom('showNewMessage', $('#shifter-debug-meta').text());
+        }
+
         let webhook = 'https://hooks.slack.com/services/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';
         let system_report = $('#shifter-debug-meta').text();
 
@@ -23,20 +27,7 @@ export function shifter_dashboard_widget() {
           cancelButtonText: 'Copy to Clipboard',
         }).then((result) => {
           if (result.value) {
-            $.ajax({
-              type: 'POST',
-              url: webhook,
-              data: 'payload=' + JSON.stringify({
-                  "text": system_report
-              }),
-              processData: false,
-              dataType: 'json'
-            })
-            swal(
-              'Sent!',
-              'Your system report was sent',
-              'success'
-            )
+            CreateIntercomReport();
           } else if (result.dismiss === swal.DismissReason.cancel) {
             copy($('#shifter-debug-meta').text());
             swal(
