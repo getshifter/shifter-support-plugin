@@ -10,10 +10,9 @@ export function shifter_dashboard_widget() {
         e.preventDefault();
 
         function CreateIntercomReport() {
-          Intercom('showNewMessage', $('#shifter-debug-meta').text());
+          Intercom('showNewMessage', $('#shifter-debug-meta').html());
         }
 
-        let webhook = 'https://hooks.slack.com/services/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';
         let system_report = $('#shifter-debug-meta').text();
 
         swal({
