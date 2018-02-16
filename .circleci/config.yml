@@ -14,8 +14,8 @@ jobs:
       - run: sudo yarn build:production
       # Check change but not built.
       - run:
-        name: Force Add dist/
-        command: git add -f dist/
+          name: Force Add dist/
+          command: git add -f dist/
       - run:
           name: IS_DIST_NEWEST
           command: git diff --check --exit-code || { echo "Diff detected! please check dist was synced."; git status ; exit 1; }
