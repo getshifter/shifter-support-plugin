@@ -8,3 +8,7 @@ npm-debug.log
 src
 assets/config/mainfest.json
 mainfest.json
+
+## Must not ignore `dist/` files until deploy process refined.
+# dist/js/*
+# dist/css/*
