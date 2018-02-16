@@ -8,3 +8,6 @@ npm-debug.log
 src
 assets/config/mainfest.json
 mainfest.json
+
+dist/js/*
+dist/css/*
