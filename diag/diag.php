@@ -8,7 +8,7 @@ function link_to($url) {
 <div class="shifter-diag-wrap">
 
 <nav class="system-report-nav">
-  <a href="#" id="shifter-support-diag-copy" class="button">View System Report</a>
+  <a href="#" id="shifter-support-diag-copy" class="button">Copy to your clipboard</a>
 </nav>
 
 <div aria-hidden="true" id="shifter-debug-meta" class="shifter-debug-meta">
