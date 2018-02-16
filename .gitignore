@@ -9,5 +9,6 @@ src
 assets/config/mainfest.json
 mainfest.json
 
-dist/js/*
-dist/css/*
+## Must not ignore `dist/` files until deploy process refined.
+# dist/js/*
+# dist/css/*
