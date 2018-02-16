@@ -1,32 +1,18 @@
 <?php
 $site_id = getenv("SITE_ID");
+
 function link_to($url) {
   echo '<a href="' . $url . '">' . $url . '</a>';
 }
 ?>
 
-<div class="shifter-diag-wrap">
-
-<nav class="system-report-nav">
-  <a href="#" id="shifter-support-diag-copy" class="button">View System Report</a>
+<nav>
+  <a href="#shifter-support-diag" id="shifter-support-diag-change-view">Change View</a>
 </nav>
-
-<div aria-hidden="true" id="shifter-debug-meta" class="shifter-debug-meta">
-  <?php // System Report Vars
-  $theme_data = (array) wp_get_theme();
-  $theme = wp_get_theme();
-  $plugins = (array) get_option("active_plugins");
-  $system_report = array_merge($theme_data, $plugins);
-  $system_report = json_encode($system_report);
-  echo $system_report; ?>
-</div>
 
 <div id="shifter-support-diag" class="shifter-support-diag">
   <div id="shifter-support-diag-styled-target">
-    <?php if ($site_id) { ?>
-      <h2>Project ID</h2>
-      <pre><code><?php echo $site_id ?></code></pre>
-    <?php } ?>
+    <h2>Project ID: <?php echo $site_id ?></h2>
     <h2>Theme</h2>
     <table>
       <thead>
@@ -37,7 +23,8 @@ function link_to($url) {
         </tr>
       </thead>
       <tbody>
-        <tr class="shifter-diag__row">
+        <tr>
+          <?php $theme = wp_get_theme() ?>
           <td class="shifter-support-name"><?php echo $theme->get("Name"); ?></td>
           <td class="shifter-support-url"><?php echo link_to($theme->get("ThemeURI")); ?></td>
           <td class="shifter-support-version"><?php echo $theme->get("Version"); ?></td>
@@ -55,8 +42,9 @@ function link_to($url) {
         </tr>
       </thead>
       <tbody>
+        <?php $plugins = get_option("active_plugins"); ?>
         <?php foreach($plugins as $plugin) { ?>
-          <tr class="shifter-diag__row">
+          <tr>
             <?php $plugin_meta = get_plugin_data(WP_PLUGIN_DIR . "/" . $plugin); ?>
             <td class="shifter-support-name"><?php echo $plugin_meta['Name']; ?></td>
             <td class="shifter-support-url"><?php echo link_to($plugin_meta['PluginURI']); ?></td>
@@ -66,6 +54,24 @@ function link_to($url) {
       </tbody>
     </table>
   </div>
-</div>
-
+  <div id="shifter-support-diag-text-target">
+    <p>Project ID: <?php echo $site_id ?></p>
+    <p>Theme</p>
+    <p>
+      name: <?php echo $theme->get("Name"); ?>,
+      URI: <?php echo link_to($theme->get("ThemeURI")); ?>,
+      Version: <?php echo $theme->get("Version"); ?><br />
+    </p>
+    <br />
+    <p>Activated Plugins</p>
+      <?php $plugins = get_option("active_plugins"); ?>
+      <?php foreach($plugins as $plugin) { ?>
+        <?php $plugin_meta = get_plugin_data(WP_PLUGIN_DIR . "/" . $plugin); ?>
+        name: <?php echo $plugin_meta['Name']; ?>,
+        URI: <?php echo link_to($plugin_meta['PluginURI']); ?>,
+        Version: <?php echo $plugin_meta['Version']; ?><br />
+      <?php } ?>
+      <br />
+      <br />
+  </div>
 </div>
