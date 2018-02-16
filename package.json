@@ -1,6 +1,6 @@
 {
   "name": "shifter-support-plugin",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
@@ -59,7 +59,6 @@
     "yargs": "11.0.0"
   },
   "dependencies": {
-    "clipboard-copy": "^1.4.2",
     "jquery": "^3.1.1",
     "sweetalert2": "^7.11.0"
   },

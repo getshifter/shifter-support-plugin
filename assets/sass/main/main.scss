@@ -29,7 +29,6 @@ th.shifter-diag, td.shifter-diag {
 tr.shifter-diag {
   background-color: $purple;
   color: white;
-  padding: 4px;
 }
 
 td.shifter-support-version {
@@ -46,26 +45,4 @@ td.shifter-support-version {
 
 .disable_shifter_operation {
   color: lightgray;
-}
-
-.system-report-nav {
-  margin-bottom: 10px;
-}
-
-.shifter-debug-meta {
-  display: none;
-  overflow: hidden;
-  height: 0;
-}
-
-.shifter-support-diag {
-  table {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  pre {
-    overflow: scroll;
-    padding: 8px;
-  }
 }
