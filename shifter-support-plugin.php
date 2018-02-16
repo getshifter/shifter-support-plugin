@@ -19,39 +19,21 @@ License: GPL2
 require("api/shifter_api.php");
 
 
-
 /*
- * Env + Asset Paths
- * If ./src path does not exist
- * build path ./dist will be used
+ * Check Env
+ * If ./src exists run as development
  */
 
-$asset_dir = '/src/';
-$shifter_js = 'js/app.js';
-$shifter_css = 'css/main.css';
-$asset_src_path = dirname(__FILE__) . $asset_dir;
-$plugin_dir = content_url('/mu-plugins/');
-$shifter_asset_path = $plugin_dir . basename(__DIR__) . $asset_dir;
-
-// Production Assets
-if (!realpath($asset_src_path)) {
-  $asset_dir = '/dist/';
+function shifter_support_env() {
+  $asset_dir = '/src/';
   $asset_src_path = dirname(__FILE__) . $asset_dir;
-  $shifter_asset_path = $plugin_dir . basename(__DIR__) . $asset_dir;
-  $shifter_js = 'js/app.min.js';
 
-  // Asset Manifest
-  $json = file_get_contents( $asset_src_path . '_rev-manifest.json' );
-  $manifest = json_decode( $json, true );
-
-  // CSS Rev Filename
-  $shifter_css = $manifest['css/main.min.css'];
+  if (realpath($asset_src_path)) {
+    return 'development';
+  } else {
+    return 'production';
+  }
 }
-
-define('SHIFTER_JS', $shifter_asset_path . $shifter_js);
-define('SHIFTER_CSS', $shifter_asset_path . $shifter_css);
-
-
 
 /*
  * CSS Styles
@@ -59,7 +41,16 @@ define('SHIFTER_CSS', $shifter_asset_path . $shifter_css);
  */
 
 function add_shifter_support_css() {
-  wp_register_style("shifter-support", SHIFTER_CSS);
+
+  if (shifter_support_env() === 'development') {
+    $shifter_css = plugins_url( 'src/css/main.css', __FILE__ );
+  } else {
+    $json = file_get_contents( 'dist/_rev-manifest.json', __FILE__ );
+    $manifest = json_decode( $json, true );
+    $shifter_css = plugins_url('dist/' . $manifest['css/main.min.css'], __FILE__);
+  }
+
+  wp_register_style("shifter-support", $shifter_css);
   wp_enqueue_style("shifter-support");
 }
 
@@ -74,7 +65,13 @@ add_action('admin_enqueue_scripts', 'add_shifter_support_css' );
  */
 
 function add_shifter_support_js() {
-  wp_register_script("shifter-js", SHIFTER_JS, array( 'jquery' ));
+  if (shifter_support_env() === 'development') {
+    $shifter_js = plugins_url( 'src/js/app.js', __FILE__ );
+  } else {
+    $shifter_js = plugins_url( 'dist/js/app.min.js', __FILE__ );
+  }
+
+  wp_register_script("shifter-js", $shifter_js, array( 'jquery' ));
   wp_localize_script( 'shifter-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
   wp_enqueue_script("shifter-js");
 }
@@ -135,15 +132,6 @@ function add_shifter_diag_contents() {
 }
 
 
-// add_action("admin_footer", "add_generator_call");
-// function add_generator_call() {
-//   $is_local = getenv("SHIFTER_LOCAL");
-//   if(!$is_local) {
-//     include ("generator/trigger.js.php");
-//   }
-// }
-
-
 add_action("wp_ajax_shifter_app_terminate", "shifter_app_terminate");
 function shifter_app_terminate() {
   $api = new Shifter;
@@ -156,3 +144,23 @@ function shifter_app_generate() {
   $api = new Shifter;
   return $api->generate_wp_app();
 }
+
+/*
+ * Add Intercom Support Widget
+ *
+ */
+
+add_action('admin_footer', 'intercom_support_widget', 999);
+
+function intercom_support_widget() {
+  $current_user = wp_get_current_user();
+
+  ?>
+  <script>
+    window.intercomSettings = {
+      app_id: 'w5yiaz2d',
+      email: '<?= $current_user->user_email ?>' // Email address
+    };
+    </script>
+  <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/w5yiaz2d';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+<?php }

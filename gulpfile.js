@@ -384,7 +384,7 @@ gulp.task('serve', ['build_css', 'watch_bundles'], function(){
   browsersync(opts);
 
   // Watch tasks
-  gulp.watch([assetPath.sass.enter + '/**/*.scss'], ['build_css']);
+  gulp.watch([assetPath.sass.enter], ['build_css']);
   gulp.watch([assetPath.fonts.enter], ['copy_fonts']);
   gulp.watch([assetPath.img.enter], ['build_images']);
   gulp.watch('**/*.php', ['watch_reload']);
