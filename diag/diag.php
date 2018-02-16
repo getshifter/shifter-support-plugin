@@ -1,5 +1,5 @@
 <?php
-$site_id = getenv("SITE_ID");
+$site_id = env("SITE_ID", 'undefined_siteid');
 function link_to($url) {
   echo '<a href="' . $url . '">' . $url . '</a>';
 }
@@ -17,6 +17,7 @@ function link_to($url) {
   $theme = wp_get_theme();
   $plugins = (array) get_option("active_plugins");
   $system_report = array(
+    'project_id' => $site_id,
     'theme' => array(
       'Name' => $theme->get('Name'),
       'ThemeURI' => $theme->get('ThemeURI'),
