@@ -1,5 +1,7 @@
 <?php
-$site_id = env("SITE_ID", 'undefined_siteid');
+
+$site_id = getenv("SITE_ID", 'undefined_siteid');
+
 function link_to($url) {
   echo '<a href="' . $url . '">' . $url . '</a>';
 }
