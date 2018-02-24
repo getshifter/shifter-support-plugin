@@ -50,8 +50,11 @@ function add_shifter_support_css() {
     $shifter_css = plugins_url('dist/' . $manifest['css/main.min.css'], __FILE__);
   }
 
-  wp_register_style("shifter-support", $shifter_css);
-  wp_enqueue_style("shifter-support");
+  wp_register_style("shifter-support-plugin-css", $shifter_css);
+
+  if( is_user_logged_in()) {
+    wp_enqueue_style("shifter-support-plugin-css");
+  }
 }
 
 add_action('wp_enqueue_scripts', 'add_shifter_support_css' );
@@ -71,9 +74,12 @@ function add_shifter_support_js() {
     $shifter_js = plugins_url( 'dist/js/app.min.js', __FILE__ );
   }
 
-  wp_register_script("shifter-js", $shifter_js, array( 'jquery' ));
-  wp_localize_script( 'shifter-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-  wp_enqueue_script("shifter-js");
+  wp_register_script('shifter-support-plugin-js', $shifter_js, array( 'jquery' ));
+  wp_localize_script('shifter-support-plugin-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+
+  if( is_user_logged_in()) {
+    wp_enqueue_script('shifter-support-plugin-js');
+  }
 }
 
 add_action('wp_enqueue_scripts', 'add_shifter_support_js' );
