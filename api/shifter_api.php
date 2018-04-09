@@ -18,6 +18,7 @@ class Shifter {
     $this->terminate_url = "$shifte_api_v2/projects/$this->site_id/wordpress_site/stop";
     $this->generate_url = "$shifte_api_v1/projects/$this->site_id/artifacts";
     $this->refresh_url = "$shifte_api_v1/login";
+    $this->shifter_dashboard_url = "https://go.getshifter.io/admin/projects/v2/$this->site_id";
 
     $bootup_unixtimestamp = file_get_contents(ABSPATH."/.bootup");
     $bootup_date = new DateTime();
