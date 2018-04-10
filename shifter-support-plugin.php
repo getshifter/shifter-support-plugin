@@ -85,10 +85,12 @@ function add_shifter_support_js() {
 add_action("wp_before_admin_bar_render", "add_shifter_support");
 function add_shifter_support() {
   $local_class = getenv("SHIFTER_LOCAL") ? "disable_shifter_operation" : "";
+  $api = new Shifter;
   global $wp_admin_bar;
   $shifter_support = array(
     "id" => "shifter_support",
     "title" => '<span id="shifter-support-top-menu">Shifter</span>',
+    "href" => $api->shifter_dashboard_url
   );
   $shifter_support_terminate = array(
     "id"    => "shifter_support_terminate",
