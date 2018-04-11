@@ -89,7 +89,12 @@ function add_shifter_support() {
   global $wp_admin_bar;
   $shifter_support = array(
     "id" => "shifter_support",
-    "title" => '<span id="shifter-support-top-menu">Shifter</span>',
+    "title" => '<span id="shifter-support-top-menu">Shifter</span>'
+  );
+  $shifter_support_back_to_shifter_dashboard = array(
+    "id"    => "shifter_support_back_to_shifter_dashboard",
+    "title" => "Back to Shifter Dashboard",
+    "parent" => "shifter_support",
     "href" => $api->shifter_dashboard_url
   );
   $shifter_support_terminate = array(
@@ -107,6 +112,7 @@ function add_shifter_support() {
     "meta" => array("class" => $local_class)
   );
   $wp_admin_bar->add_menu($shifter_support);
+  $wp_admin_bar->add_menu($shifter_support_back_to_shifter_dashboard);
   $wp_admin_bar->add_menu($shifter_support_terminate);
   $wp_admin_bar->add_menu($shifter_support_generate);
 }
