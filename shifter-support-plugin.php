@@ -13,7 +13,7 @@ License: GPL2
  * Shifter API
  */
 
-require("api/shifter_api.php");
+require("api/shifter-api.php");
 
 /*
  * Check Env
@@ -85,7 +85,7 @@ function add_shifter_support_js() {
 add_action("wp_before_admin_bar_render", "add_shifter_support");
 function add_shifter_support() {
   $local_class = getenv("SHIFTER_LOCAL") ? "disable_shifter_operation" : "";
-  $api = new Shifter;
+  $api = new Shifter_API;
   global $wp_admin_bar;
   $shifter_support = array(
     "id" => "shifter_support",
@@ -133,12 +133,12 @@ function add_shifter_diag_contents() {
 
 add_action("wp_ajax_shifter_app_terminate", "shifter_app_terminate");
 function shifter_app_terminate() {
-  $api = new Shifter;
+  $api = new Shifter_API;
   return $api->terminate_wp_app();
 }
 
 add_action("wp_ajax_shifter_app_generate", "shifter_app_generate");
 function shifter_app_generate() {
-  $api = new Shifter;
+  $api = new Shifter_API;
   return $api->generate_wp_app();
 }
