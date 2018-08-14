@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Shifter Support Plugin
-Plugin URI: https://github.com/getshifter/shifter-support-plugin
-Description: This plugin is provided access to Shifter support.
+Plugin Name: Shifter WP Controller
+Plugin URI: https://github.com/getshifter/shifter-wp-controller
+Description: Shifter controls from the WordPress Dashboard.
 Version: 1.1.7
-Author: Shifter Team
+Author: DigitalCube
 Author URI: https://getshifter.io
 License: GPL2
 */
@@ -15,41 +15,22 @@ License: GPL2
 
 require("api/shifter_api.php");
 
-/*
- * Check Env
- * If ./src exists run as development
- */
-
-function shifter_support_env() {
-  $asset_dir = '/src/';
-  $asset_src_path = dirname(__FILE__) . $asset_dir;
-  if (realpath($asset_src_path)) {
-    return 'development';
-  } else {
-    return 'production';
-  }
-}
-/*
- * CSS Styles
- * Admin and Front-End
- */
+// /*
+//  * CSS Styles
+//  * Admin and Front-End
+//  */
 
 add_action('wp_enqueue_scripts', 'add_shifter_support_css' );
 add_action('admin_enqueue_scripts', 'add_shifter_support_css' );
 function add_shifter_support_css() {
 
-  if (shifter_support_env() === 'development') {
-    $shifter_css = plugins_url( 'src/css/main.css', __FILE__ );
-  } else {
-    $json = file_get_contents( 'dist/_rev-manifest.json', __FILE__ );
-    $manifest = json_decode( $json, true );
-    $shifter_css = plugins_url('dist/' . $manifest['css/main.min.css'], __FILE__);
-  }
+  // $shifter_css = plugins_url( 'src/css/main.css', __FILE__ );
+  // wp_register_style("shifter-support", $shifter_css);
 
-  wp_register_style("shifter-support", $shifter_css);
+  wp_register_style("sweetalert2", "https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.css");
 
   if (is_user_logged_in()) {
-    wp_enqueue_style("shifter-support");
+    wp_enqueue_style("sweetalert2");
   }
 }
 
@@ -63,17 +44,17 @@ add_action('wp_enqueue_scripts', 'add_shifter_support_js' );
 add_action('admin_enqueue_scripts', 'add_shifter_support_js' );
 function add_shifter_support_js() {
 
-  if (shifter_support_env() === 'development') {
-    $shifter_js = plugins_url( 'src/js/app.js', __FILE__ );
-  } else {
-    $shifter_js = plugins_url( 'dist/js/app.min.js', __FILE__ );
-  }
+  $shifter_js = plugins_url( 'main/main.js', __FILE__ );
 
   wp_register_script("shifter-js", $shifter_js, array( 'jquery' ));
   wp_localize_script('shifter-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 
+  wp_register_script( 'sweetalert2', 'https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.26.11/sweetalert2.min.js', null, null, true );
+  wp_localize_script('sweetalert2', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+
   if (is_user_logged_in()) {
     wp_enqueue_script("shifter-js");
+    wp_enqueue_script("sweetalert2");
   }
 }
 
