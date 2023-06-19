@@ -13,12 +13,11 @@ class Shifter {
     $this->access_token = getenv("SHIFTER_ACCESS_TOKEN");
     $this->refresh_token = getenv("SHIFTER_REFRESH_TOKEN");
 
-    $shifte_api_v1 = getenv("SHIFTER_API_URL_V1");
-    $shifte_api_v2 = getenv("SHIFTER_API_URL_V2");
-    $this->terminate_url = "$shifte_api_v2/projects/$this->site_id/wordpress_site/stop";
-    $this->generate_url = "$shifte_api_v1/projects/$this->site_id/artifacts";
-    $this->refresh_url = "$shifte_api_v1/login";
-    $this->shifter_dashboard_url = "https://go.getshifter.io/admin/projects/v2/$this->site_id";
+    $shifte_api = getenv("SHIFTER_API_URL");
+    $this->terminate_url = "$shifte_api/sites/$this->site_id/wordpress_site/stop";
+    $this->generate_url = "$shifte_api/sites/$this->site_id/artifacts";
+    $this->refresh_url = "$shifte_api/login";
+    $this->shifter_dashboard_url = "https://go.getshifter.io/sites/$this->site_id";
 
     $bootup_unixtimestamp = file_get_contents(ABSPATH."/.bootup");
     $bootup_date = new DateTime();
