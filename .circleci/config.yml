@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cimg/node:12
+      - image: cimg/node:12.22
     working_directory: ~/shifter-support-plugin
     steps:
       - checkout
